@@ -1,10 +1,11 @@
 <main>
-  <form (ngSubmit)="subscribe()">
-    <h3 class="text-center">Signin !</h3>
+  <form #form (ngSubmit)="subscribe()">
+    <h3 class="text-center">Signup !</h3>
     <hr />
     <div class="form-group">
-      <label for="name">Your name:</label>
+      <label for="name">Your name *:</label>
       <input
+        #name
         type="text"
         class="form-control"
         name="name"
@@ -12,8 +13,9 @@
       />
     </div>
     <div class="form-group">
-      <label for="email">Your email:</label>
+      <label for="email">Your email *:</label>
       <input
+        #email
         type="email"
         class="form-control"
         name="email"
@@ -21,17 +23,19 @@
       />
     </div>
     <div class="form-group">
-      <label for="password">Your password:</label>
+      <label for="password">Your password *:</label>
       <input
+        #password
         type="password"
         class="form-control"
         name="password"
-        [(ngModel)]="user.passwrd"
+        [(ngModel)]="user.password"
       />
     </div>
     <div class="form-group">
-      <label for="password2">Confirm your password:</label>
+      <label for="password2">Confirm your password *:</label>
       <input
+        #password2
         type="password"
         class="form-control"
         name="passord2"
@@ -41,10 +45,16 @@
     <div>
       <button class="btn btn-primary">Signin</button>
     </div>
+    <br />
     <div
+      *ngIf="response.message != ''"
       [ngClass]="{
-       'alert':true,
+        'text-center':true,
+        'alert':true,
         'alert-success':response.status==200,
+        'alert-danger':response.status!=200,
+
+        
     }"
     >
       {{ response.message }}
