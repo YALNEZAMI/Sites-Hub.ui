@@ -61,6 +61,16 @@ export class SitesComponent {
   displayAddForm(event: Event): void {
     if (this.cadreAddForm.nativeElement.style.display === 'flex') {
       if (event.target == event.currentTarget) {
+        //reset the app to empty
+        this.app = {
+          user: this.sessionService.getUser()._id || '',
+          name: '',
+          image: '',
+          description: '',
+          category: 'Other',
+          addDate: new Date(),
+          url: '',
+        };
         this.cadreAddForm.nativeElement.style.display = 'none';
       }
     } else {
@@ -124,6 +134,16 @@ export class SitesComponent {
   displayCadreSettingApp(event: Event, app: App) {
     if (this.cadreSettingApp.nativeElement.style.display === 'flex') {
       if (event.target == event.currentTarget) {
+        //reset the app to empty
+        this.app = {
+          user: this.sessionService.getUser()._id || '',
+          name: '',
+          image: '',
+          description: '',
+          category: 'Other',
+          addDate: new Date(),
+          url: '',
+        };
         this.cadreSettingApp.nativeElement.style.display = 'none';
       }
     } else {

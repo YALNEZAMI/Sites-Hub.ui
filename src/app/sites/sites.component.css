@@ -30,10 +30,7 @@
         text-align: center;
     
     }
-    .app:hover{
-        background-color: var(--c1g);
-        cursor: pointer;
-    }
+    
 }
 /*PC*/
 @media (min-width: 768px) {
@@ -60,12 +57,12 @@
         text-align: center;
     
     }
-    .app:hover{
-        background-color: var(--c1g);
-        cursor: pointer;
-    } 
+   
 }
-
+.app:hover{
+    background-color: var(--c1g);
+    cursor: pointer;
+} 
 #addDiv{
     position: fixed;
     right: 5%;
