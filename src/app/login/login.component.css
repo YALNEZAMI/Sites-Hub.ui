@@ -1,0 +1,20 @@
+main{
+    background-image: url('../../assets/images/appsLogin.jpg');
+    background-size: cover;
+
+    background-repeat: no-repeat;
+    min-width: 100vw;
+    min-height: 100vh;
+    padding: 10% 20% 20% 20%;
+}
+form{
+    background-color: var(--c1g);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px;
+    height: max-content;
+ 
+}
+.HaveNotAccount{
+    font-size: 80%;
+}

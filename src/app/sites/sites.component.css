@@ -1,0 +1,138 @@
+#sitesContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/*Mobile*/
+@media (max-width: 768px) {
+    .app{
+        width: 30%;
+        height: 150px;
+        margin: 1%;
+        background-color: var(--c1s);
+        border-radius: 10px;
+        position: relative;
+    }
+    .appImage{
+        width: 100%;
+        height: 75%;
+        background-color: var(--c1g);
+        border-radius: 10px 10px 0px 0px;
+    
+    }
+    .appName{
+        padding: 3px;
+        width: 100%;
+        height: 25%;
+        border-radius: 0px 0px 10px 10px;
+        font-size: 75%;
+      
+        text-align: center;
+    
+    }
+    .app:hover{
+        background-color: var(--c1g);
+        cursor: pointer;
+    }
+}
+/*PC*/
+@media (min-width: 768px) {
+    .app{
+        width: 14.5%;
+        height: 170px;
+        margin: 1%;
+        background-color: var(--c1s);
+        border-radius: 10px;
+        position: relative;
+    }
+    .appImage{
+        width: 100%;
+        height: 80%;
+        background-color: var(--c1g);
+        border-radius: 10px 10px 0px 0px;
+    
+    }
+    .appName{
+        width: 100%;
+        height: 20%;
+        border-radius: 0px 0px 10px 10px;
+        font-size: 90%;
+        text-align: center;
+    
+    }
+    .app:hover{
+        background-color: var(--c1g);
+        cursor: pointer;
+    } 
+}
+
+#addDiv{
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    border-radius: 50%;
+
+}
+#addBtn{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 0px;
+    cursor: pointer;
+}
+#addForm{
+background-color: var(--c1s);
+padding: 10px;
+border-radius: 10px;
+}
+#cadreAddForm{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#cadreSettingApp{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#updateForm{
+    background-color: var(--c1s);
+    padding: 10px;
+    border-radius: 10px;
+}
+.nameAndSettingsApp{
+    width: 100%;
+    margin: 0px;
+    height: 100%;
+    
+}
+.settingsApp{
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    z-index: 2;
+    padding: 0px;
+    color: var(--c2s);
+    background-color: var(--c1s);
+    border-radius: 20%;
+}
+#updateBtn{
+    margin-right: 5px;
+}
+.linkApp{
+    height: 100%; 
+}

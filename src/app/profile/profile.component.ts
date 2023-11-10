@@ -1,50 +1,36 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { Component, ViewChild } from '@angular/core';
+import { SessionService } from '../services/session.service';
+import { Router } from '@angular/router';
 import { User } from '../interface/User';
+import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css'],
 })
-export class SignupComponent {
+export class ProfileComponent {
   @ViewChild('name') nameElement: any;
+  @ViewChild('image') imageElement: any;
   @ViewChild('email') emailElement: any;
   @ViewChild('password') passwordElement: any;
   @ViewChild('password2') password2Element: any;
-  @ViewChild('form') form: any;
   response: any = { status: 0, message: '' };
-  user: User = {
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
-  };
-  constructor(private userService: UserService) {}
-  formChange() {
-    this.resetBorders();
-    this.response = { status: 0, message: '' };
+  user: User;
+  confirmDelete: boolean = false;
+  constructor(
+    private sessionService: SessionService,
+    private router: Router,
+    private userService: UserService
+  ) {
+    this.user = this.sessionService.getUser();
   }
-  subscribe() {
-    //user not filled case
-    if (!this.isUserFilled()) {
-      this.lanceAlert(400, 'Please fill all the required fields');
-      if (!this.user.name) {
-        this.nameElement.nativeElement.style.border = '2px solid red';
-      }
-      if (!this.user.email) {
-        this.emailElement.nativeElement.style.border = '2px solid red';
-      }
+  logout() {
+    this.sessionService.logout();
+    this.router.navigate(['/login']);
+  }
 
-      if (!this.user.password) {
-        this.passwordElement.nativeElement.style.border = '2px solid red';
-      }
-      if (!this.user.password2) {
-        this.password2Element.nativeElement.style.border = '2px solid red';
-      }
-
-      return;
-    }
+  update() {
     //email not valid case
     if (!this.isEmailValid()) {
       this.lanceAlert(400, 'Please enter a valid email');
@@ -53,7 +39,7 @@ export class SignupComponent {
       return;
     }
     //short password case
-    if (!this.isPasswordLong()) {
+    if (this.user.password && !this.isPasswordLong()) {
       this.lanceAlert(400, 'Password is too short');
       this.passwordElement.nativeElement.style.border = '2px solid red';
       this.password2Element.nativeElement.style.border = '2px solid red';
@@ -61,7 +47,7 @@ export class SignupComponent {
       return;
     }
     //password dont match case
-    if (!this.passwordMatch()) {
+    if (this.user.password && !this.passwordMatch()) {
       this.lanceAlert(400, 'Password dont match');
       this.passwordElement.nativeElement.style.border = '2px solid red';
       this.password2Element.nativeElement.style.border = '2px solid red';
@@ -69,21 +55,20 @@ export class SignupComponent {
       return;
     }
 
-    this.userService.signup(this.user).subscribe((res: any) => {
+    //update case
+    this.userService.updateUser(this.user).subscribe((res: any) => {
       this.lanceAlert(res.status, res.message);
       if (res.status === 200) {
-        this.form.nativeElement.reset();
-        this.resetBorders();
+        //updating in local storage
+        this.sessionService.setUser(res.user);
+        //set updating client event
+        this.userService.setUserChanges(res.user);
       }
     });
   }
-  isUserFilled() {
-    return (
-      this.user.name &&
-      this.user.email &&
-      this.user.password &&
-      this.user.password2
-    );
+  formChange() {
+    this.resetBorders();
+    this.response = { status: 0, message: '' };
   }
   passwordMatch() {
     return this.user.password === this.user.password2;
@@ -94,20 +79,28 @@ export class SignupComponent {
   }
   lanceAlert(status: number, msg: string) {
     this.response = { status: status, message: msg };
-    if (status != 200) {
-      setTimeout(() => {
-        this.response = { status: 0, message: '' };
-        this.resetBorders();
-      }, 5000);
-    }
+    setTimeout(() => {
+      this.response = { status: 0, message: '' };
+      this.resetBorders();
+    }, 5000);
   }
   isEmailValid() {
     return this.emailElement.nativeElement.validity.valid;
   }
   resetBorders() {
+    this.imageElement.nativeElement.style.border = 'none';
     this.nameElement.nativeElement.style.border = 'none';
     this.emailElement.nativeElement.style.border = 'none';
     this.passwordElement.nativeElement.style.border = 'none';
     this.password2Element.nativeElement.style.border = 'none';
+  }
+  deleteAccount() {
+    this.userService.delete().subscribe((res: any) => {
+      this.lanceAlert(res.status, res.message);
+      if (res.status === 200) {
+        this.sessionService.logout();
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

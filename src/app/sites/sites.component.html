@@ -1,0 +1,207 @@
+<main>
+  <!--apps container-->
+  <div id="sitesContainer">
+    <div class="app" *ngFor="let app of apps">
+      <!--settings-->
+      <div class="settingsApp" (click)="displayCadreSettingApp($event, app)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-gear-wide-connected"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434l.071-.286zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5zm0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78h4.723zM5.048 3.967c-.03.021-.058.043-.087.065l.087-.065zm-.431.355A4.984 4.984 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8 4.617 4.322zm.344 7.646.087.065-.087-.065z"
+          />
+        </svg>
+      </div>
+      <!--link-->
+      <a class="linkApp" [href]="app.url" target="_blank">
+        <img
+          class="appImage"
+          [src]="app.image"
+          alt="image of the app"
+          onerror="this.src='../../assets/images/app.png'"
+        />
+        <div class="appName">{{ app.name }}</div>
+      </a>
+    </div>
+  </div>
+  <!--button add app-->
+  <div id="addDiv">
+    <button
+      (click)="displayAddForm($event)"
+      id="addBtn"
+      class="btn btn-success"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-database-add"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Z"
+        />
+        <path
+          d="M12.096 6.223A4.92 4.92 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.493 4.493 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.525 4.525 0 0 1-.813-.927C8.5 14.992 8.252 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.552 4.552 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10c.262 0 .52-.008.774-.024a4.525 4.525 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777ZM3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4Z"
+        />
+      </svg>
+    </button>
+  </div>
+  <!--form add app-->
+  <div #cadreAddForm id="cadreAddForm" (click)="displayAddForm($event)">
+    <form #addForm id="addForm" (ngSubmit)="addApp()">
+      <div class="form-group">
+        <label for="name">App name* :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          #name
+          [(ngModel)]="app.name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="appImage">App photo link* :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="appImage"
+          #appImage
+          [(ngModel)]="app.image"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">App description :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="description"
+          #description
+          [(ngModel)]="app.description"
+        />
+      </div>
+      <div class="form-group">
+        <label for="url">App url* :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="url"
+          #url
+          [(ngModel)]="app.url"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="categorie">Category :</label>
+        <select
+          class="form-control"
+          name="categorie"
+          [(ngModel)]="app.category"
+        >
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+      <div
+        *ngIf="response.message != ''"
+        [ngClass]="{
+    alert:true,
+    'alert-success':response.status==200,
+    'alert-danger':response.status!=200,
+}"
+      >
+        {{ response.message }}
+      </div>
+      <br />
+      <button class="btn btn-primary">Add</button>
+    </form>
+  </div>
+  <!--update and delete form-->
+  <div
+    #cadreSettingApp
+    id="cadreSettingApp"
+    (click)="displayCadreSettingApp($event, app)"
+  >
+    <form #updateForm id="updateForm" (ngSubmit)="updateApp()">
+      <div class="form-group">
+        <label for="name">App name* :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          #name
+          [(ngModel)]="app.name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="appImage">App photo link* :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="appImage"
+          #appImage
+          [(ngModel)]="app.image"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">App description :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="description"
+          #description
+          [(ngModel)]="app.description"
+        />
+      </div>
+      <div class="form-group">
+        <label for="url">App url* :</label>
+        <input
+          class="form-control"
+          type="text"
+          name="url"
+          #url
+          [(ngModel)]="app.url"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="categorie">Category :</label>
+        <select
+          class="form-control"
+          name="categorie"
+          [(ngModel)]="app.category"
+        >
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+      <div
+        *ngIf="response.message != ''"
+        [ngClass]="{
+    alert:true,
+    'alert-success':response.status==200,
+    'alert-danger':response.status!=200,
+}"
+      >
+        {{ response.message }}
+      </div>
+
+      <button id="updateBtn" class="btn btn-success">update</button>
+      <button type="button" class="btn btn-danger" (click)="deleteApp()">
+        delete
+      </button>
+    </form>
+  </div>
+</main>

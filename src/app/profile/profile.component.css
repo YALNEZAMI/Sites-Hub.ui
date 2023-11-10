@@ -1,0 +1,13 @@
+#btnDeleteAccount{
+    width: 80%;
+    margin: 10px 10%;
+}
+#confirmDeleteDiv{
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+#logoutDiv{
+   padding: 10px;
+   display: flex;
+   justify-content: end;
+}

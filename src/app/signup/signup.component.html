@@ -1,5 +1,5 @@
 <main>
-  <form #form (ngSubmit)="subscribe()">
+  <form #form (ngSubmit)="subscribe()" (input)="formChange()">
     <h3 class="text-center">Signup !</h3>
     <hr />
     <div class="form-group">
@@ -10,6 +10,7 @@
         class="form-control"
         name="name"
         [(ngModel)]="user.name"
+        required
       />
     </div>
     <div class="form-group">
@@ -20,6 +21,7 @@
         class="form-control"
         name="email"
         [(ngModel)]="user.email"
+        required
       />
     </div>
     <div class="form-group">
@@ -30,16 +32,18 @@
         class="form-control"
         name="password"
         [(ngModel)]="user.password"
+        required
       />
     </div>
     <div class="form-group">
-      <label for="password2">Confirm your password *:</label>
+      <label for="password2">Confirm password *:</label>
       <input
         #password2
         type="password"
         class="form-control"
         name="passord2"
         [(ngModel)]="user.password2"
+        required
       />
     </div>
     <div>
@@ -58,10 +62,13 @@
     }"
     >
       {{ response.message }}
+      <span *ngIf="response.status == 200"
+        >,You can now <a routerLink="/login">login </a>!</span
+      >
     </div>
     <br />
     <div class="text-center alreadyAccount">
-      <a routerLink="/login"> You have an account ?</a>
+      You have an account ? <a routerLink="/login">Login !</a>
     </div>
   </form>
 </main>

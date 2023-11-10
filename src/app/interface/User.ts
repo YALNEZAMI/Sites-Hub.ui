@@ -1,6 +1,11 @@
+import { App } from './App';
+
 export class User {
-  name: string = '';
-  email: string = '';
-  password: string = '';
+  _id?: string = '';
+  name?: string = '';
+  email?: string = '';
+  password?: string = '';
   password2?: string = '';
+  image?: string = '';
+  apps?: App[] = [];
 }

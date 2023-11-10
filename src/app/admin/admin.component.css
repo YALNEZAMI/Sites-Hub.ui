@@ -1,0 +1,36 @@
+*{
+    --header-height: 12vh;
+}
+main{
+    padding-top: var(--header-height);
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color:var(--c1s) ;
+    padding: 10px;
+    padding-top: 15px;
+}
+#content{
+    background-color: var(--c2s);
+    height: calc(100vh - var(--header-height));
+}
+#profilePhoto{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1%;
+}
+#bienvenue{
+    padding-top: 15px;
+    width: 80%;
+
+}
+#settings{
+margin-top: 17px;
+height: max-content;
+cursor: pointer;
+}

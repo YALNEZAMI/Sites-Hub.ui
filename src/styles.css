@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    /*global variables*/
+    --c1g: #caafaf;
+    /* --c2g: rgb(245, 234, 234);
+    --c3g: #785050; */
+    
+    /*session variables*/
+    --c1s: #e7afaf;
+    --c2s: rgb(245, 234, 234);
+    --c3s: #785050;
+}
