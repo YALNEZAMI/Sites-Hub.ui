@@ -93,6 +93,13 @@ export class SitesComponent {
   deleteApp() {
     this.siteService.delete(this.app).subscribe((res: any) => {
       if (res.status == 200) {
+        //delet the site from local storage
+        this.sessionService.deleteSite(this.app);
+        //delet the site from the list
+
+        this.apps = this.apps.filter((app) => app._id !== this.app._id);
+        //hide the setting of the app
+        this.cadreSettingApp.nativeElement.style.display = 'none';
         //reset the app to empty
         this.app = {
           user: this.sessionService.getUser()._id || '',
@@ -103,13 +110,6 @@ export class SitesComponent {
           addDate: new Date(),
           url: '',
         };
-        //hide the setting of the app
-        this.cadreSettingApp.nativeElement.style.display = 'none';
-
-        //delet the site from local storage
-        this.sessionService.deleteSite(this.app);
-        //delet the site from the list
-        this.apps = this.apps.filter((app) => app._id !== this.app._id);
       } else {
         //set response to notify the user of the response message
         this.response = res;
