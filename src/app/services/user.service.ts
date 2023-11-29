@@ -28,7 +28,7 @@ export class UserService {
   }
   updateUser(user: any) {
     //delet _id field from user object
-    delete user._id;
+    // delete user._id;
 
     return this.http.patch(`${env.API_URL}/user/${this.user._id}`, user);
   }
